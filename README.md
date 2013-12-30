@@ -1,4 +1,5 @@
 ircensus
 ========
 
-A simple census-script for IRC
+A simple census-bot for IRC.
+
