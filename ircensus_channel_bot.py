@@ -70,7 +70,6 @@ def main():
     channel = sys.argv[2]
     nickname = sys.argv[3]
 
-    print(port)
     bot = CensusBot(channel, nickname, server, port)
     bot.start()
 
