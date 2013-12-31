@@ -7,10 +7,33 @@ A simple bot to gather some census data in IRC channels.
 :license: AGPLv3
 """
 import irc.bot
+import irc.strings
+from irc.client import ip_numstr_to_quad, ip_quad_to_numstr
 
 
 class CensusBot(irc.bot.SingleServerIRCBot):
-    pass
+    """
+    The class implementing the census bot.
+    """
+
+    def __init__(self, channel, nickname, server, port=6667):
+        """
+        The constructor for the CensusBot class.
+
+        :param channel: name of the channel to join
+        :type channel: str
+        :param nickname: nick of the bot (to use)
+        :type nickname: str
+        :param server: FQDN of the server to use
+        :type server: str
+        :param port: port to use when connecting to the server
+        :type port: int
+        """
+        if 0 != channel.find('#'):
+            channel = '#' + channel
+        irc.bot.SingleServerIRCBot.__init__(self, [(server, port)], nickname, nickname)
+        self.channel = channel
+
 
 def main():
     import sys
