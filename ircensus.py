@@ -35,6 +35,19 @@ class CensusBot(irc.bot.SingleServerIRCBot):
         self.channel = channel
 
 
+    def on_nickname_in_use(self, connection, e):
+        """
+        Change own nickname if already in use.
+
+        :param connection: connection to the server
+        :type connection: IRC.ServerConnection
+        :raises: TypeError
+        """
+        if not isinstance(connection, ServerConnection):
+            raise TypeError("'connection' is not of type 'ServerConnection'")
+        connection.nick(connection.get_nickname() + "_")
+
+
 def main():
     import sys
     if len(sys.argv) != 4:
