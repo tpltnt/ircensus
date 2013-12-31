@@ -2,6 +2,7 @@
 
 """
 A simple bot to gather some census data in IRC channels.
+It is intended to sit in a channel and collect the data for statistics.
 
 :author: tpltnt
 :license: AGPLv3
@@ -35,12 +36,14 @@ class CensusBot(irc.bot.SingleServerIRCBot):
         self.channel = channel
 
 
-    def on_nickname_in_use(self, connection, e):
+    def on_nickname_in_use(self, connection, event):
         """
         Change own nickname if already in use.
 
         :param connection: connection to the server
-        :type connection: IRC.ServerConnection
+        :type connection: irc.client.ServerConnection
+        :param event: event to react to
+        :type event: 
         :raises: TypeError
         """
         if not isinstance(connection, ServerConnection):
